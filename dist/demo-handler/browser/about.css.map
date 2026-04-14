@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/about/about.scss"],
-  "sourcesContent": [".page-header { margin-top: -88px; padding-top: 150px !important; }\r\n.bg-card { background-color: var(--dh-bg-card); }\r\n.header-glow { background: radial-gradient(circle at 50% 0%, var(--dh-orange) 0%, transparent 70%); }\r\n.border-orange-10 { border: 1px solid rgba(255, 107, 0, 0.1) !important; }\r\n\r\n.circle-decoration {\r\n  width: 300px;\r\n  height: 300px;\r\n  background: var(--dh-orange);\r\n  filter: blur(100px);\r\n  border-radius: 50%;\r\n}\r\n\r\n.shadow-2xl { box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8); }\r\n.tracking-wider { letter-spacing: 0.1em; }\r\n.fw-800 { font-weight: 800; }\r\n"],
-  "mappings": ";AAAA,CAAA;AAAe,cAAA;AAAmB,eAAA;;AAClC,CAAA;AAAW,oBAAA,IAAA;;AACX,CAAA;AAAe;IAAA;MAAA,OAAA,GAAA,IAAA,EAAA;MAAA,IAAA,aAAA,EAAA;MAAA,YAAA;;AACf,CAAA;AAAoB,UAAA,IAAA,MAAA,KAAA,GAAA,EAAA,GAAA,EAAA,CAAA,EAAA;;AAEpB,CAAA;AACE,SAAA;AACA,UAAA;AACA,cAAA,IAAA;AACA,UAAA,KAAA;AACA,iBAAA;;AAGF,CAAA;AAAc,cAAA,EAAA,KAAA,KAAA,MAAA,KAAA,CAAA,EAAA,CAAA,EAAA,CAAA,EAAA;;AACd,CAAA;AAAkB,kBAAA;;AAClB,CAAA;AAAU,eAAA;;",
-  "names": []
-}

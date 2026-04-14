@@ -34,7 +34,7 @@ jobs:
           protocol: ftp
           local-dir: ./dist/demo-handler/browser/
           server-dir: ./
-          dangerous-clean-slate: false # Set to false to prevent deleting existing files on the server
+          dangerous-clean-slate: true # Temporarily set to true to force a clean sync
           exclude: |
             **/.htaccess
             **/.well-known/**

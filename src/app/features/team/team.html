@@ -1,0 +1,69 @@
+<div class="page-header text-white position-relative bg-pure">
+  <div class="header-glow position-absolute w-100 h-100 top-0 start-0 opacity-25"></div>
+  <div class="container position-relative py-5 text-center">
+    <h1 class="display-3 fw-800 mb-3 animate-fade">Core <span class="text-orange">Team</span></h1>
+    <p class="lead text-light-gray fs-4 mx-auto animate-fade" style="max-width: 700px;">
+      The technical force driving innovation at demoHandler.
+    </p>
+  </div>
+</div>
+
+<section class="team-showcase bg-subtle">
+  <div class="container">
+    <div class="row g-4 align-items-stretch mb-5 team-proof-row">
+      <div class="col-lg-4 col-md-6">
+        <div class="team-proof-card h-100">
+          <span class="team-proof-value">15+ yrs</span>
+          <p class="team-proof-label mb-0">Average leadership experience across core delivery functions</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="team-proof-card h-100">
+          <span class="team-proof-value">Enterprise-ready</span>
+          <p class="team-proof-label mb-0">Cross-functional ownership from strategy and UX through cloud and AI implementation</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-12">
+        <div class="team-proof-card h-100">
+          <span class="team-proof-value">Trusted delivery</span>
+          <p class="team-proof-label mb-0">Transparent communication, quality controls, and scalable execution built into every engagement</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 align-items-stretch">
+      @for (member of team(); track member.id) {
+        <div class="col-md-6 col-xl-4 d-flex">
+          <article class="team-member-card w-100 d-flex flex-column">
+            <div class="team-member-media position-relative overflow-hidden">
+              <img class="team-member-image" [src]="member.imageUrl" [alt]="member.name">
+              <div class="team-member-overlay">
+                <div class="team-member-socials">
+                  <a href="#" aria-label="LinkedIn profile" class="team-social-link"><i class="bi bi-linkedin"></i></a>
+                  <a href="#" aria-label="Email contact" class="team-social-link"><i class="bi bi-envelope"></i></a>
+                  <a href="#" aria-label="Professional profile" class="team-social-link"><i class="bi bi-globe2"></i></a>
+                </div>
+                <p class="team-overlay-note mb-0">Available for architecture reviews, delivery consultations, and discovery workshops.</p>
+              </div>
+            </div>
+
+            <div class="team-member-body d-flex flex-column flex-grow-1">
+              <div class="team-member-meta mb-3">
+                <p class="team-member-role mb-2">{{ member.role }}</p>
+                <h3 class="team-member-name mb-0">{{ member.name }}</h3>
+              </div>
+
+              <p class="team-member-bio flex-grow-1">{{ member.bio }}</p>
+
+              <div class="team-skill-list mt-3">
+                @for (skill of member.skills; track skill) {
+                  <span class="team-skill-badge">{{ skill }}</span>
+                }
+              </div>
+            </div>
+          </article>
+        </div>
+      }
+    </div>
+  </div>
+</section>

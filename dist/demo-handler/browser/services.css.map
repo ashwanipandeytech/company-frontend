@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/services/services.scss"],
+  "sourcesContent": [".header-glow { background: radial-gradient(circle at 50% 0%, var(--dh-orange) 0%, transparent 70%); }\r\n.bg-orange-soft { background: rgba(255, 107, 0, 0.1); }\r\n.border-orange-10 { border-top: 1px solid rgba(255, 107, 0, 0.1) !important; }\r\n.fw-800 { font-weight: 800; }\r\n.page-header { margin-top: -88px; padding-top: 150px !important; }\r\n"],
+  "mappings": ";AAAA,CAAA;AAAe;IAAA;MAAA,OAAA,GAAA,IAAA,EAAA;MAAA,IAAA,aAAA,EAAA;MAAA,YAAA;;AACf,CAAA;AAAkB,cAAA,KAAA,GAAA,EAAA,GAAA,EAAA,CAAA,EAAA;;AAClB,CAAA;AAAoB,cAAA,IAAA,MAAA,KAAA,GAAA,EAAA,GAAA,EAAA,CAAA,EAAA;;AACpB,CAAA;AAAU,eAAA;;AACV,CAAA;AAAe,cAAA;AAAmB,eAAA;;",
+  "names": []
+}

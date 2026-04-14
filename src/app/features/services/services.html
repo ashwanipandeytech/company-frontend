@@ -1,0 +1,135 @@
+<!-- 1. Hero Section -->
+<section class="hero-section position-relative overflow-hidden d-flex align-items-center">
+  <div class="hero-pattern position-absolute w-100 h-100 top-0 start-0 opacity-5"></div>
+  <div class="container position-relative py-5">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 text-center text-lg-start animate-up">
+        <span class="dh-section-label">Our Expertise</span>
+        <h1 class="display-2 fw-800 text-head mb-4 lh-tight">
+          Enterprise <br> <span class="text-orange">IT Solutions</span>
+        </h1>
+        <p class="lead mb-5 fs-4 text-body pe-lg-5">
+          Engineering excellence through performance-driven software architecture, cloud strategies, and AI integration.
+        </p>
+        <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-4">
+          <a routerLink="/contact" class="dh-btn-orange fs-5 px-5 py-3 shadow-lg">Start Building</a>
+          <a href="#solutions" class="btn btn-outline-dark fs-5 px-5 py-3 border-2 fw-bold rounded-3">View Services</a>
+        </div>
+      </div>
+      <div class="col-lg-6 d-none d-lg-block animate-float">
+        <div class="hero-img-wrap p-4 bg-orange-light rounded-4 shadow-sm border border-white border-4">
+           <div class="bg-white rounded-3 p-5 shadow-lg border border-light">
+              <div class="d-flex align-items-center mb-4">
+                 <div class="dot bg-success me-2"></div>
+                 <span class="small fw-bold text-success">Systems Architected: 150+</span>
+              </div>
+              <div class="v-row bg-subtle mb-3 rounded-pill" style="width: 100%; height: 12px;"></div>
+              <div class="v-row bg-subtle mb-3 rounded-pill" style="width: 80%; height: 12px;"></div>
+              <div class="row g-2 mt-4">
+                 <div class="col-4"><div class="v-row bg-orange-light rounded-pill" style="height: 40px;"></div></div>
+                 <div class="col-8"><div class="v-row bg-subtle rounded-pill" style="height: 40px;"></div></div>
+              </div>
+              <div class="mt-5 text-center">
+                 <i class="bi bi-stack display-1 text-orange opacity-25"></i>
+              </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Services Grid -->
+<section id="solutions" class="bg-subtle border-top border-bottom">
+  <div class="container">
+    <div class="text-center mb-5 pb-lg-4 animate-up">
+      <span class="dh-section-label">What We Offer</span>
+      <h2 class="display-4 fw-800">Specialized Engineering</h2>
+    </div>
+    
+    <div class="row g-4">
+      @for (service of services(); track service.id) {
+        <div class="col-md-6 col-lg-3">
+          <div class="dh-service-card animate-up" [style.animation-delay]="service.id * 0.1 + 's'">
+            <div class="icon-box">
+              <i class="bi" [class]="service.icon"></i>
+            </div>
+            <div class="service-content">
+              <h4 class="fw-bold mb-3 text-head">{{ service.title }}</h4>
+              <p class="text-body small mb-0 lh-lg">{{ service.description }}</p>
+            </div>
+            <a routerLink="/contact" class="cta-link">
+              Consult With Expert <i class="bi bi-arrow-right-short"></i>
+            </a>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- 3. Process Section -->
+<section class="bg-white">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5">
+        <span class="dh-section-label">Our Process</span>
+        <h2 class="display-5 fw-800 text-head mb-4">How We <span class="text-orange">Deliver Success</span></h2>
+        <p class="text-body fs-5 mb-5">Our structured approach ensures that every engagement results in high-quality, scalable, and maintainable software.</p>
+        
+        <div class="d-flex flex-column gap-4">
+          <div class="d-flex gap-3">
+             <div class="step-num text-orange fw-800 fs-4">01</div>
+             <div>
+                <h6 class="fw-bold mb-1">Discovery & Audit</h6>
+                <p class="small text-muted mb-0">We analyze your current stack and business objectives.</p>
+             </div>
+          </div>
+          <div class="d-flex gap-3">
+             <div class="step-num text-orange fw-800 fs-4">02</div>
+             <div>
+                <h6 class="fw-bold mb-1">Architecture Design</h6>
+                <p class="small text-muted mb-0">Our leads draft a robust and scalable technical blueprint.</p>
+             </div>
+          </div>
+          <div class="d-flex gap-3">
+             <div class="step-num text-orange fw-800 fs-4">03</div>
+             <div>
+                <h6 class="fw-bold mb-1">Agile Development</h6>
+                <p class="small text-muted mb-0">Iterative delivery with continuous integration and testing.</p>
+             </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-7">
+        <div class="row g-4">
+           <div class="col-sm-6">
+              <div class="dh-card-white bg-orange-light border-0 text-center">
+                 <i class="bi bi-speedometer2 display-4 text-orange mb-3 d-block"></i>
+                 <h5 class="fw-bold text-head">Fast Delivery</h5>
+                 <p class="small text-body mb-0">Proprietary frameworks accelerate time-to-market by 40%.</p>
+              </div>
+           </div>
+           <div class="col-sm-6">
+              <div class="dh-card-white bg-white text-center shadow-lg border-0 translate-y-lg">
+                 <i class="bi bi-shield-check display-4 text-orange mb-3 d-block"></i>
+                 <h5 class="fw-bold text-head">Security First</h5>
+                 <p class="small text-body mb-0">Built-in compliance and security protocols for every module.</p>
+              </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. CTA Section -->
+<section class="bg-dark text-white text-center position-relative overflow-hidden">
+  <div class="container position-relative z-1">
+    <h2 class="display-4 fw-800 mb-4">Ready to <span class="text-orange">Scale?</span></h2>
+    <p class="lead text-white opacity-75 mb-5 mx-auto" style="max-width: 600px;">Get a technical consultation with our senior engineers and discover how we can optimize your infrastructure.</p>
+    <a routerLink="/contact" class="dh-btn-orange px-5 py-3 fs-5 shadow-lg">Request Technical Audit</a>
+  </div>
+  <div class="circle-decoration position-absolute top-50 start-50 translate-middle opacity-10" style="width: 800px; height: 800px; filter: blur(150px);"></div>
+</section>

@@ -1,0 +1,23 @@
+.v-row { height: 12px; border-radius: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+
+.step-num {
+  min-width: 40px;
+}
+
+.translate-y-lg {
+  @media (min-width: 576px) {
+    transform: translateY(40px);
+  }
+}
+
+.circle-decoration {
+  background: var(--dh-orange);
+  border-radius: 50%;
+}
+
+.fw-800 { font-weight: 800; }
+
+#solutions {
+  scroll-margin-top: 100px;
+}

@@ -1,0 +1,171 @@
+.dh-hero-premium {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffffff 0%, #fff8f4 100%);
+  padding-top: 100px;
+  
+  .hero-pattern-mesh {
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(255, 106, 0, 0.03) 0, transparent 50%), 
+      radial-gradient(at 50% 0%, rgba(255, 106, 0, 0.05) 0, transparent 50%), 
+      radial-gradient(at 100% 0%, rgba(255, 106, 0, 0.03) 0, transparent 50%);
+    opacity: 0.8;
+  }
+
+  .glow-sphere {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 106, 0, 0.08) 0%, transparent 70%);
+    filter: blur(80px);
+    z-index: 0;
+  }
+}
+
+.premium-badge {
+  background: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--dh-orange);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border: 1px solid rgba(255, 106, 0, 0.1);
+  display: inline-flex;
+  align-items: center;
+}
+
+.text-gradient-orange {
+  background: linear-gradient(90deg, var(--dh-orange) 0%, #ff9100 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dh-btn-premium-orange {
+  background: var(--dh-orange-gradient);
+  color: white !important;
+  padding: 1.1rem 2.5rem;
+  border-radius: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  &:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(255, 106, 0, 0.3);
+  }
+}
+
+.btn-glass {
+  background: rgba(15, 23, 42, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  color: var(--dh-text-head);
+  padding: 1.1rem 2.5rem;
+  border-radius: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: var(--dh-transition);
+
+  &:hover {
+    background: rgba(15, 23, 42, 0.06);
+    border-color: var(--dh-text-head);
+  }
+}
+
+.avatar-group {
+  display: flex;
+  .avatar-sm {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 800;
+    margin-left: -10px;
+    &:first-child { margin-left: 0; }
+  }
+}
+
+// Illustration Styles
+.illustration-wrapper {
+  padding: 40px;
+  .main-visual-card {
+    background: white;
+    border-radius: 30px;
+    padding: 2.5rem;
+    border: 1px solid rgba(255, 106, 0, 0.1);
+    position: relative;
+    z-index: 2;
+  }
+  
+  .dot-mini { width: 8px; height: 8px; border-radius: 50%; }
+  
+  .bar {
+    width: 40px;
+    border-radius: 12px 12px 4px 4px;
+    transition: height 1s ease-out;
+  }
+  
+  .line { height: 8px; border-radius: 4px; }
+  
+  .floating-node {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    z-index: 3;
+    border: 1px solid rgba(255,106,0,0.05);
+    
+    &.node-1 { top: -20px; right: -20px; }
+    &.node-2 { bottom: 40px; left: -30px; }
+  }
+
+  .blur-blob {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 1;
+    &.blob-1 { background: rgba(255, 106, 0, 0.1); top: -50px; right: -50px; }
+    &.blob-2 { background: rgba(0, 200, 150, 0.05); bottom: -50px; left: -50px; }
+  }
+}
+
+// Custom Animations
+@keyframes grow {
+  from { height: 0; }
+}
+.animate-grow { animation: grow 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-30px) rotate(5deg); }
+}
+.animate-float-slow { animation: floatSlow 8s ease-in-out infinite; }
+
+// Re-using existing global utils but keeping local overrides for clarity
+.fw-800 { font-weight: 800; }
+.shadow-orange-lg { box-shadow: 0 15px 30px rgba(255, 106, 0, 0.2); }
+
+// Inherited from global but adding specific homepage overrides if needed
+.project-insight-card {
+  background: white;
+  border: 1px solid var(--dh-border);
+  border-radius: 20px;
+  padding: 3rem;
+  transition: var(--dh-transition);
+  &:hover {
+    border-color: var(--dh-orange);
+    transform: translateY(-5px);
+    box-shadow: var(--dh-shadow-lg);
+  }
+}
+
+.dot { width: 10px; height: 10px; border-radius: 50%; }

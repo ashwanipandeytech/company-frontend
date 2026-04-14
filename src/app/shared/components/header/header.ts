@@ -1,0 +1,12 @@
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
+@Component({
+  selector: 'dh-header',
+  standalone: true,
+  imports: [RouterLink, RouterLinkActive],
+  templateUrl: './header.html',
+  styleUrl: './header.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class Header {}

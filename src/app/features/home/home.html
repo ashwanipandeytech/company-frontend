@@ -1,0 +1,269 @@
+<!-- 1. Hero Section -->
+<section class="hero-section position-relative overflow-hidden d-flex align-items-center">
+  <div class="hero-pattern position-absolute w-100 h-100 top-0 start-0 opacity-5"></div>
+  <div class="container position-relative py-5">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 text-center text-lg-start animate-up">
+        <span class="dh-section-label">Smart IT Partnerships</span>
+        <h1 class="display-2 fw-800 text-head mb-4 lh-tight">
+          Accelerate Your <br> <span class="text-orange">Digital Evolution</span>
+        </h1>
+        <p class="lead mb-5 fs-4 text-body pe-lg-5">
+          We deliver premium software engineering and cloud strategies designed for high-growth enterprises.
+        </p>
+        <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-4">
+          <a routerLink="/services" class="dh-btn-orange fs-5 px-5 py-3 shadow-lg">Our Solutions</a>
+          <a routerLink="/contact" class="btn btn-outline-dark fs-5 px-5 py-3 border-2 fw-bold rounded-3">Get a Quote</a>
+        </div>
+      </div>
+      <div class="col-lg-6 d-none d-lg-block animate-float">
+        <div class="hero-img-wrap p-4 bg-orange-light rounded-4 shadow-sm border border-white border-4">
+           <div class="bg-white rounded-3 p-5 shadow-lg border border-light">
+              <div class="d-flex align-items-center mb-4">
+                 <div class="dot bg-success me-2"></div>
+                 <span class="small fw-bold text-success">Systems Fully Operational</span>
+              </div>
+              <div class="v-row bg-subtle mb-3 rounded-pill" style="width: 100%; height: 12px;"></div>
+              <div class="v-row bg-subtle mb-3 rounded-pill" style="width: 80%; height: 12px;"></div>
+              <div class="v-row bg-orange-light mb-0 rounded-pill" style="width: 60%; height: 12px;"></div>
+              <div class="mt-5 text-center"><i class="bi bi-cpu display-1 text-orange opacity-25"></i></div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. About Preview -->
+<section class="bg-subtle border-top border-bottom">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 order-2 order-lg-1">
+        <div class="p-5 bg-white rounded-4 shadow-sm border">
+           <h2 class="fw-800 mb-4">Since 2016, we've built the tools that <span class="text-orange">power industry leaders.</span></h2>
+           <p class="text-body fs-5 mb-4">demoHandler is more than a service provider—we are your technical architects. We bridge the gap between complex requirements and user-centric results.</p>
+           <a routerLink="/about" class="text-orange fw-bold text-decoration-none">Learn more about our values &rarr;</a>
+        </div>
+      </div>
+      <div class="col-lg-6 order-1 order-lg-2">
+        <span class="dh-section-label">Who We Are</span>
+        <h2 class="display-5 fw-800 mb-4">Global Reach. <br>Local Impact.</h2>
+        <p class="text-body mb-0">Our mission is to democratize high-end software architecture for businesses of all sizes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Insight Section -->
+<section class="bg-white">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-lg-8">
+        <span class="dh-section-label">Our Impact</span>
+        <h2 class="display-4 fw-800">Scaling Through Experience</h2>
+        <p class="text-body lead">A glance at our delivery velocity and current engineering commitments.</p>
+      </div>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="project-insight-card d-flex align-items-center gap-4 shadow-sm">
+          <div class="icon-circle shadow-sm">
+            <i class="bi bi-check-all fs-1"></i>
+          </div>
+          <div>
+            <h2 class="fw-800 text-head display-4 mb-0">150+</h2>
+            <p class="text-muted fw-bold text-uppercase small mb-0 tracking-wider">Total Projects Completed</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="project-insight-card d-flex align-items-center gap-4 shadow-sm">
+          <div class="icon-circle shadow-sm">
+            <i class="bi bi-gear-wide-connected fs-1"></i>
+          </div>
+          <div>
+            <h2 class="fw-800 text-head display-4 mb-0">20+</h2>
+            <p class="text-muted fw-bold text-uppercase small mb-0 tracking-wider">Active Pipeline Engagements</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Services Overview -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5 pb-lg-4">
+      <span class="dh-section-label">Our Expertise</span>
+      <h2 class="display-4 fw-800">Elite IT Solutions</h2>
+    </div>
+    <div class="row g-4">
+      @for (service of services().slice(0, 4); track service.id) {
+        <div class="col-md-6 col-lg-3">
+          <div class="dh-card-white h-100">
+            <div class="bg-orange-light text-orange rounded-3 d-flex align-items-center justify-content-center mb-4" style="width: 56px; height: 56px;">
+              <i class="bi fs-2" [class]="service.icon"></i>
+            </div>
+            <h4 class="fw-bold mb-3">{{ service.title }}</h4>
+            <p class="text-body small mb-0">{{ service.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- 4. AI Commitment Section -->
+<section class="bg-orange-light position-relative overflow-hidden">
+  <div class="container py-5 text-center position-relative z-1">
+    <span class="dh-section-label bg-white">Future Ready</span>
+    <h2 class="display-4 fw-800 mb-4">Committed to <span class="text-orange">AI Innovation</span></h2>
+    <p class="lead text-body mx-auto mb-5" style="max-width: 700px;">We are integrating Generative AI and Machine Learning into our core workflows to deliver smarter, faster, and more efficient solutions for our clients.</p>
+    <div class="row g-4 justify-content-center">
+       <div class="col-md-4"><div class="p-4 bg-white rounded-3 shadow-sm border fw-bold text-head"><i class="bi bi-brain me-2 text-orange"></i> Neural Architecture</div></div>
+       <div class="col-md-4"><div class="p-4 bg-white rounded-3 shadow-sm border fw-bold text-head"><i class="bi bi-robot me-2 text-orange"></i> Automated QA</div></div>
+    </div>
+  </div>
+  <i class="bi bi-gpu-card position-absolute bottom-0 end-0 display-1 text-orange opacity-5 mb-n4 me-n4"></i>
+</section>
+
+<!-- 5. Team Members -->
+<section class="bg-subtle">
+  <div class="container">
+    <div class="text-center mb-5 pb-lg-4">
+      <span class="dh-section-label">Engineering Leaders</span>
+      <h2 class="display-4 fw-800">Meet the Team</h2>
+    </div>
+    <div class="row g-4 justify-content-center">
+      @for (member of team(); track member.id) {
+        <div class="col-md-6 col-lg-4">
+          <div class="dh-card-white p-0 overflow-hidden border-0 shadow-sm">
+            <div class="bg-orange-light py-5 d-flex align-items-center justify-content-center">
+              <i class="bi bi-person-bounding-box display-1 text-orange opacity-25"></i>
+            </div>
+            <div class="p-4 text-center">
+              <h5 class="fw-bold mb-1">{{ member.name }}</h5>
+              <p class="text-orange small fw-bold text-uppercase mb-3">{{ member.role }}</p>
+              <p class="text-body small mb-0">{{ member.bio }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- 6. Projects/Stats Section -->
+<section class="py-5 bg-white border-top border-bottom">
+  <div class="container py-4">
+    <div class="row g-4 text-center">
+      <div class="col-6 col-md-3">
+        <h2 class="fw-800 text-head display-5">150+</h2>
+        <p class="text-muted small text-uppercase fw-bold">Projects Done</p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h2 class="fw-800 text-head display-5">50+</h2>
+        <p class="text-muted small text-uppercase fw-bold">Expert Staff</p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h2 class="fw-800 text-head display-5">12</h2>
+        <p class="text-muted small text-uppercase fw-bold">Global Offices</p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h2 class="fw-800 text-head display-5">99.9%</h2>
+        <p class="text-muted small text-uppercase fw-bold">Uptime Rate</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. 24/7 Availability Section -->
+<section class="bg-subtle">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="dh-section-label">Reliability</span>
+        <h2 class="display-5 fw-800 mb-4">We're Always <span class="text-orange">Online</span></h2>
+        <p class="text-body fs-5 mb-5">Our global monitoring center and support teams operate 24/7 to ensure your mission-critical systems never sleep.</p>
+        <div class="d-flex align-items-center p-4 bg-white rounded-4 border shadow-sm">
+           <div class="spinner-grow text-success me-3" role="status"></div>
+           <div><h6 class="fw-bold mb-0">Global Network Status: Active</h6><p class="text-muted small mb-0">All regional nodes responding within 15ms.</p></div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="row g-3">
+           <div class="col-6"><div class="p-4 bg-white rounded-3 border text-center"><i class="bi bi-clock-history text-orange fs-2 d-block mb-2"></i><span class="small fw-bold">Round the clock</span></div></div>
+           <div class="col-6"><div class="p-4 bg-white rounded-3 border text-center"><i class="bi bi-globe-americas text-orange fs-2 d-block mb-2"></i><span class="small fw-bold">Global Support</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Testimonials -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5 pb-lg-4">
+      <span class="dh-section-label">Client Feedback</span>
+      <h2 class="display-4 fw-800">Trusted by Global Brands</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="dh-card-white">
+          <div class="d-flex gap-1 text-orange mb-3"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <p class="text-body italic mb-4">"The technical expertise of demoHandler transformed our legacy infrastructure into a high-speed cloud solution."</p>
+          <div class="fw-bold text-head">Marcus Thorne</div>
+          <div class="small text-muted">CTO, NexaCorp</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="dh-card-white">
+          <div class="d-flex gap-1 text-orange mb-3"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <p class="text-body italic mb-4">"Exceptional delivery speed and code quality. Their AI integration approach is truly industry-leading."</p>
+          <div class="fw-bold text-head">Sarah Jenkins</div>
+          <div class="small text-muted">Lead Developer, FinStream</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="dh-card-white">
+          <div class="d-flex gap-1 text-orange mb-3"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+          <p class="text-body italic mb-4">"Professional, responsive, and innovative. They feel like an extension of our own internal engineering team."</p>
+          <div class="fw-bold text-head">David Lee</div>
+          <div class="small text-muted">CEO, SparkLogistics</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Newsletter Section -->
+<section class="bg-orange-light border-top border-bottom">
+  <div class="container text-center py-4">
+    <h3 class="fw-800 mb-3">Join Our Technical Hub</h3>
+    <p class="text-body mb-5 mx-auto" style="max-width: 500px;">Get monthly insights on cloud architecture, AI trends, and modern software engineering.</p>
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="input-group shadow-sm">
+          <input type="email" class="form-control border-0 py-3 px-4" placeholder="Enter your email">
+          <button class="btn dh-btn-orange px-4 py-0 rounded-start-0">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. Contact CTA Section -->
+<section class="bg-white">
+  <div class="container">
+    <div class="p-5 bg-dark rounded-4 shadow-2xl text-center position-relative overflow-hidden border border-white border-opacity-10">
+       <div class="position-relative z-1 py-4">
+          <h2 class="display-4 fw-800 text-white mb-4">Ready to start your <span class="text-orange">next project?</span></h2>
+          <p class="lead text-white mb-5">Connect with our lead architects today for a free technical consultation.</p>
+          <a routerLink="/contact" class="dh-btn-orange fs-5 px-5 py-3 shadow-lg">Start Building Today</a>
+       </div>
+       <div class="circle-decoration position-absolute top-0 end-0 opacity-10"></div>
+    </div>
+  </div>
+</section>

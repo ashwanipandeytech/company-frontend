@@ -1,0 +1,63 @@
+<div class="page-header text-white position-relative bg-pure">
+  <div class="header-glow position-absolute w-100 h-100 top-0 start-0 opacity-25"></div>
+  <div class="container position-relative py-5 text-center">
+    <h1 class="display-3 fw-800 mb-3 animate-fade">FAQ<span class="text-orange">.</span></h1>
+    <p class="lead text-light-gray fs-4 mx-auto animate-fade" style="max-width: 700px;">
+      Quick insights into our technical process and partnership model.
+    </p>
+  </div>
+</div>
+
+<section class="faq-showcase bg-subtle">
+  <div class="container">
+    <div class="row g-4 align-items-stretch mb-5 faq-intro-row">
+      <div class="col-lg-4">
+        <aside class="faq-side-card h-100">
+          <span class="dh-section-label">Support Model</span>
+          <h2 class="faq-side-title">Answers built for confident decision-making.</h2>
+          <p class="faq-side-copy">We keep the process transparent from discovery through delivery, so stakeholders know what to expect, what we recommend, and how we de-risk execution.</p>
+          <div class="faq-trust-list">
+            <div class="faq-trust-item">
+              <i class="bi bi-shield-check"></i>
+              <span>Security-minded delivery</span>
+            </div>
+            <div class="faq-trust-item">
+              <i class="bi bi-diagram-3"></i>
+              <span>Cross-functional collaboration</span>
+            </div>
+            <div class="faq-trust-item">
+              <i class="bi bi-lightning-charge"></i>
+              <span>Fast, structured execution</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="accordion faq-accordion" id="faqAcc">
+          @for (faq of faqs(); track faq.id) {
+            <div class="accordion-item faq-card">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed faq-card-trigger"
+                  type="button"
+                  [attr.data-bs-toggle]="'collapse'"
+                  [attr.data-bs-target]="'#faq-' + faq.id"
+                  [attr.aria-controls]="'faq-' + faq.id"
+                >
+                  <span class="faq-card-index">0{{ faq.id }}</span>
+                  <span class="faq-card-question">{{ faq.question }}</span>
+                </button>
+              </h2>
+              <div [id]="'faq-' + faq.id" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+                <div class="accordion-body faq-card-body">
+                  <p class="mb-0">{{ faq.answer }}</p>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

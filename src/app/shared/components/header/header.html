@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg fixed-top dh-navbar dh-glass-white border-bottom shadow-xs">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" routerLink="/">
+      
+      <div class="brand-wrap me-2 bg-orange-light d-flex align-items-center justify-content-center rounded-3" style="width: 40px; height: 40px;">
+        <i class="bi bi-rocket-takeoff-fill text-orange"></i>
+      </div>
+      <span class="fw-800 text-head fs-4"><span class="text-orange">demo</span>Handler</span>
+     
+      <!-- <span class="dh-logo me-2" aria-hidden="true">
+        <span class="dh-logo-mark">
+          <span class="dh-logo-chip"></span>
+          <span class="dh-logo-bar dh-logo-bar-top"></span>
+          <span class="dh-logo-bar dh-logo-bar-mid"></span>
+          <span class="dh-logo-bar dh-logo-bar-bottom"></span>
+        </span>
+        <span class="dh-logo-text">
+          <span class="dh-logo-demo">demo</span>
+          <span class="dh-logo-handler">Handler</span>
+        </span>
+      </span> -->
+    </a>
+    
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item px-1"><a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li class="nav-item px-1"><a class="nav-link" routerLink="/about" routerLinkActive="active">About</a></li>
+        <li class="nav-item px-1"><a class="nav-link" routerLink="/services" routerLinkActive="active">Services</a></li>
+        <li class="nav-item px-1"><a class="nav-link" routerLink="/team" routerLinkActive="active">Team</a></li>
+        <li class="nav-item pe-lg-4 px-1"><a class="nav-link" routerLink="/faq" routerLinkActive="active">FAQ</a></li>
+        <li class="nav-item mt-3 mt-lg-0">
+          <a class="dh-btn-orange text-decoration-none shadow-sm px-4" routerLink="/contact">Get Started</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

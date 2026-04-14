@@ -22,7 +22,9 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build Frontend (Live)
-        run: npx ng build --configuration production --base-href https://demohandler.in/
+        run: |
+          npx ng build --configuration production --base-href https://demohandler.in/
+          echo "Deployed at: $(date)" > ./dist/demo-handler/browser/deploy-timestamp.txt
 
       - name: Deploy Frontend to Live
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -33,8 +35,8 @@ jobs:
           port: 21
           protocol: ftp
           local-dir: ./dist/demo-handler/browser/
-          server-dir: domains/demohandler.in/public_html/
-          timeout: 60000 # Increased timeout for stability
+          server-dir: public_html/
+          timeout: 60000
           dangerous-clean-slate: false
           exclude: |
             **/.htaccess

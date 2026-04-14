@@ -33,8 +33,8 @@ jobs:
           port: 21
           protocol: ftp
           local-dir: ./dist/demo-handler/browser/
-          server-dir: ./
-          dangerous-clean-slate: true # Temporarily set to true to force a clean sync
+          server-dir: domains/demohandler.in/public_html/
+          dangerous-clean-slate: false # Set back to false for safety
           exclude: |
             **/.htaccess
             **/.well-known/**

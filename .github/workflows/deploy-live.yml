@@ -33,7 +33,7 @@ jobs:
           port: 21
           protocol: ftp
           local-dir: ./dist/demo-handler/browser/
-          server-dir: public_html/
+          server-dir: ${{ secrets.FTP_REMOTE_PATH_LIVE }}
           dangerous-clean-slate: false # Set to false to prevent deleting existing files on the server
           exclude: |
             **/.htaccess

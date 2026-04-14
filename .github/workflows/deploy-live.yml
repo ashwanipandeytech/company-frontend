@@ -24,6 +24,7 @@ jobs:
       - name: Build Frontend (Live)
         run: |
           npx ng build --configuration production --base-href https://demohandler.in/
+          echo "<!-- Deployed at: $(date) -->" >> ./dist/demo-handler/browser/index.html
           echo "Deployed at: $(date)" > ./dist/demo-handler/browser/deploy-timestamp.txt
 
       - name: Deploy Frontend to Live
@@ -35,7 +36,7 @@ jobs:
           port: 21
           protocol: ftp
           local-dir: ./dist/demo-handler/browser/
-          server-dir: public_html/
+          server-dir: ./
           timeout: 60000
           dangerous-clean-slate: false
           exclude: |

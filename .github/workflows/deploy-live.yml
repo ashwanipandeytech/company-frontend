@@ -33,7 +33,7 @@ jobs:
           port: 21
           protocol: ftp
           local-dir: ./dist/demo-handler/browser/
-          server-dir: domains/demohandler.in/public_html
+          server-dir: domains/demohandler.in/public_html/
           timeout: 60000 # Increased timeout for stability
           dangerous-clean-slate: false
           exclude: |

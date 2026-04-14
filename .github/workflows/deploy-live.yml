@@ -33,8 +33,9 @@ jobs:
           port: 21
           protocol: ftp
           local-dir: ./dist/demo-handler/browser/
-          server-dir: domains/demohandler.in/public_html/
-          dangerous-clean-slate: false # Set back to false for safety
+          server-dir: domains/demohandler.in/public_html
+          timeout: 60000 # Increased timeout for stability
+          dangerous-clean-slate: false
           exclude: |
             **/.htaccess
             **/.well-known/**

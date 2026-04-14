@@ -1,0 +1,48 @@
+name: Deploy Live
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build Frontend (Live)
+        run: npx ng build --configuration production --base-href https://demohandler.in/
+
+      - name: Deploy Frontend to Live
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER_LIVE }}
+          username: ${{ secrets.FTP_USERNAME_LIVE }}
+          password: ${{ secrets.FTP_PASSWORD_LIVE }}
+          port: 21
+          protocol: ftp
+          local-dir: ./dist/demo-handler/browser/
+          server-dir: public_html/
+          dangerous-clean-slate: false # Set to false to prevent deleting existing files on the server
+          exclude: |
+            **/.htaccess
+            **/.well-known/**
+            cgi-bin/**
+            api/**
+            images/**
+            php/**
+            error_log
+            .DS_Store
+            .git/**
+            .github/**

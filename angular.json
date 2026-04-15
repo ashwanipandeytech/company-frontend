@@ -58,6 +58,13 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "development-ssr": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "server": "src/main.server.ts",
+              "ssr": true
             }
           },
           "defaultConfiguration": "production"
@@ -69,7 +76,7 @@
               "buildTarget": "demo-handler:build:production"
             },
             "development": {
-              "buildTarget": "demo-handler:build:development"
+              "buildTarget": "demo-handler:build:development-ssr"
             }
           },
           "defaultConfiguration": "development"

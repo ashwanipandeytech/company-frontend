@@ -23,7 +23,7 @@ jobs:
 
       - name: Build Frontend (Live)
         run: |
-          npx ng build --configuration production --base-href https://demohandler.in/
+          npx ng build --configuration production --base-href /
           echo "<!-- Deployed at: $(date) -->" >> ./dist/demo-handler/browser/index.html
           echo "Deployed at: $(date)" > ./dist/demo-handler/browser/deploy-timestamp.txt
 

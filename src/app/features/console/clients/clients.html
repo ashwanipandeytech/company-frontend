@@ -33,16 +33,24 @@
             @for (client of clients(); track client.id) {
               <tr>
                 <td class="ps-4">
-                  <div class="bg-light rounded p-2 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
-                    @if (client.logo_url) {
-                      <img [src]="client.logo_url" [alt]="client.name" class="img-fluid" style="max-height: 30px;">
+                  <div class="bg-light rounded p-2 d-flex align-items-center justify-content-center border" style="width: 50px; height: 50px;">
+                    @if (client.logo_url || client.logo) {
+                      <img [src]="getImageUrl(client.logo_url || client.logo)" [alt]="client.name" class="img-fluid" style="max-height: 30px;">
                     } @else {
                       <i class="bi bi-building text-muted opacity-50"></i>
                     }
                   </div>
                 </td>
                 <td class="fw-bold text-dark">{{ client.name }}</td>
-                <td><a [href]="client.website_url" target="_blank" class="text-orange text-decoration-none small">{{ client.website_url }}</a></td>
+                <td>
+                  @if (client.website_url || client.website) {
+                    <a [href]="client.website_url || client.website" target="_blank" class="text-orange text-decoration-none small">
+                      {{ client.website_url || client.website }}
+                    </a>
+                  } @else {
+                    <span class="text-muted small italic">No URL</span>
+                  }
+                </td>
                 <td>
                   <span class="badge rounded-pill" [ngClass]="client.is_active ? 'bg-success' : 'bg-secondary'">
                     {{ client.is_active ? 'Active' : 'Inactive' }}
@@ -50,7 +58,7 @@
                 </td>
                 <td class="text-end pe-4">
                   <button (click)="openEditModal(client)" class="btn btn-sm btn-light border me-2"><i class="bi bi-pencil"></i></button>
-                  <button (click)="deleteClient(client.id)" class="btn btn-sm btn-light border text-danger"><i class="bi bi-trash"></i></button>
+                  <button (click)="openDeleteModal(client.id)" class="btn btn-sm btn-light border text-danger"><i class="bi bi-trash"></i></button>
                 </td>
               </tr>
             }
@@ -72,21 +80,39 @@
         </div>
         <div class="modal-body p-4 pt-0">
           <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+
+            <!-- Current/New Preview -->
+            @if (selectedFilePreview()) {
+              <div class="mb-3 text-center animate-up">
+                <label class="form-label small fw-bold text-uppercase d-block text-start text-success">New Logo Preview</label>
+                <div class="bg-success-subtle p-3 rounded border border-success d-inline-block position-relative">
+                  <img [src]="selectedFilePreview()" class="img-fluid" style="max-height: 80px;">
+                  <button type="button" class="btn-close position-absolute top-0 end-0 m-1" style="font-size: 10px;" (click)="selectedFilePreview.set(null); selectedFile = null"></button>
+                </div>
+              </div>
+            } @else if (isEditing() && currentLogoUrl()) {
+              <div class="mb-3 text-center">
+                <label class="form-label small fw-bold text-uppercase d-block text-start">Current Logo</label>
+                <div class="bg-light p-3 rounded border d-inline-block">
+                  <img [src]="currentLogoUrl()" class="img-fluid" style="max-height: 60px;">
+                </div>
+              </div>
+            }
+
             <div class="mb-3">
               <label class="form-label small fw-bold text-uppercase">Client Name</label>
               <input type="text" class="form-control" formControlName="name" placeholder="e.g. NexaCorp">
             </div>
             <div class="mb-3">
               <label class="form-label small fw-bold text-uppercase">Website URL</label>
-              <input type="url" class="form-control" formControlName="website_url" placeholder="https://example.com">
+              <input type="text" class="form-control" formControlName="website_url" (blur)="onWebsiteBlur()" placeholder="e.g. google.com">
+              <div class="form-text small opacity-75">Protocol (https://) will be added automatically if missing.</div>
             </div>
-            
-            @if (!isEditing()) {
-              <div class="mb-3">
-                <label class="form-label small fw-bold text-uppercase">Logo</label>
-                <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*">
-              </div>
-            }
+
+            <div class="mb-3">
+              <label class="form-label small fw-bold text-uppercase">{{ isEditing() ? 'Update Logo (Optional)' : 'Logo' }}</label>
+              <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*">
+            </div>
 
             <div class="mb-4 d-flex align-items-center">
               <input type="checkbox" class="form-check-input me-2" formControlName="is_active" id="isActiveCheck">
@@ -97,6 +123,27 @@
               {{ isEditing() ? 'Update Client' : 'Create Client' }}
             </button>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Delete Confirmation Modal -->
+@if (isDeleteModalOpen()) {
+  <div class="modal fade show d-block" style="background: rgba(0,0,0,0.6);" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 400px;">
+      <div class="modal-content border-0 shadow-lg rounded-4 text-center">
+        <div class="modal-body p-4">
+          <div class="bg-danger-subtle text-danger rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4" style="width: 64px; height: 64px;">
+            <i class="bi bi-exclamation-triangle fs-1"></i>
+          </div>
+          <h4 class="fw-bold text-dark mb-2">Confirm Delete</h4>
+          <p class="text-muted mb-4">Are you sure you want to remove this client? This action cannot be undone.</p>
+          <div class="d-flex gap-3">
+            <button type="button" class="btn btn-light border w-100 py-2 fw-bold" (click)="closeDeleteModal()">Cancel</button>
+            <button type="button" class="btn btn-danger w-100 py-2 fw-bold" (click)="confirmDelete()">Delete</button>
+          </div>
         </div>
       </div>
     </div>

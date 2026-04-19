@@ -265,7 +265,7 @@
             <div class="col-lg-4">
               <div class="dh-card-white p-0 overflow-hidden border-0 shadow-sm h-100">
                 <div class="position-relative">
-                  <img [src]="project.thumbnail_url || 'https://placehold.co/600x400/FFF0E6/FF6A00?text=Project+Thumbnail'" [alt]="project.title" class="w-100 object-fit-cover" style="height: 200px;">
+                  <img [src]="getImageUrl(project.thumbnail || project.thumbnail_url) || 'https://placehold.co/600x400/FFF0E6/FF6A00?text=Project+Thumbnail'" [alt]="project.title" class="w-100 object-fit-cover" style="height: 200px;">
                   <span class="badge bg-dark position-absolute top-0 end-0 m-3 text-uppercase tracking-wider small">{{ project.status }}</span>
                 </div>
                 <div class="p-4">
@@ -291,8 +291,8 @@
           @for (client of clients(); track client.id) {
             <div class="col-6 col-md-3 col-lg-2">
               <div class="client-logo-wrap p-3 text-center grayscale-hover bg-white rounded-3 shadow-sm border">
-                @if (client.logo_url) {
-                  <img [src]="client.logo_url" [alt]="client.name" class="img-fluid" style="max-height: 35px; filter: grayscale(1);">
+                @if (client.logo_url || client.logo) {
+                  <img [src]="getImageUrl(client.logo_url || client.logo)" [alt]="client.name" class="img-fluid" style="max-height: 35px; filter: grayscale(1);">
                 } @else {
                   <span class="fw-bold text-muted small">{{ client.name }}</span>
                 }

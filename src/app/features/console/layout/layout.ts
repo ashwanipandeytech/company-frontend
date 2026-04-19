@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, PLATFORM_ID } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'dh-console-layout',
@@ -18,10 +18,13 @@ import { CommonModule } from '@angular/common';
 })
 export class ConsoleLayout {
   private readonly router = inject(Router);
+  private readonly platformId = inject(PLATFORM_ID);
 
   logout() {
-    localStorage.removeItem('admin_token');
-    localStorage.removeItem('admin_user');
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('admin_token');
+      localStorage.removeItem('admin_user');
+    }
     this.router.navigate(['/console-panel/login']);
   }
 }

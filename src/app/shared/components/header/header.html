@@ -1,41 +1,141 @@
-<nav class="navbar navbar-expand-lg fixed-top dh-navbar dh-glass-white border-bottom shadow-xs">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center" routerLink="/">
-      
-      <div class="brand-wrap me-2 bg-orange-light d-flex align-items-center justify-content-center rounded-3" style="width: 40px; height: 40px;">
-        <i class="bi bi-rocket-takeoff-fill text-orange"></i>
+<header class="navbar navbar-expand-lg fixed-top transition-all" style="background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--dh-border);">
+  <div class="container py-2">
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
+      <div class="bg-orange p-2 rounded-3 d-flex align-items-center justify-content-center shadow-orange-sm">
+        <i class="bi bi-gear-fill text-white fs-5"></i>
       </div>
-      <span class="fw-800 text-head fs-4"><span class="text-orange">demo</span>Handler</span>
-     
-      <!-- <span class="dh-logo me-2" aria-hidden="true">
-        <span class="dh-logo-mark">
-          <span class="dh-logo-chip"></span>
-          <span class="dh-logo-bar dh-logo-bar-top"></span>
-          <span class="dh-logo-bar dh-logo-bar-mid"></span>
-          <span class="dh-logo-bar dh-logo-bar-bottom"></span>
-        </span>
-        <span class="dh-logo-text">
-          <span class="dh-logo-demo">demo</span>
-          <span class="dh-logo-handler">Handler</span>
-        </span>
-      </span> -->
+      <span class="fw-800 text-head fs-4 tracking-tight">demoHandler</span>
     </a>
-    
-    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#dhNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
-    
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item px-1"><a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
-        <li class="nav-item px-1"><a class="nav-link" routerLink="/about" routerLinkActive="active">About</a></li>
-        <li class="nav-item px-1"><a class="nav-link" routerLink="/services" routerLinkActive="active">Services</a></li>
-        <li class="nav-item px-1"><a class="nav-link" routerLink="/team" routerLinkActive="active">Team</a></li>
-        <li class="nav-item pe-lg-4 px-1"><a class="nav-link" routerLink="/faq" routerLinkActive="active">FAQ</a></li>
-        <li class="nav-item mt-3 mt-lg-0">
-          <a class="dh-btn-orange text-decoration-none shadow-sm px-4" routerLink="/contact">Get Started</a>
-        </li>
+
+    <!-- Navigation -->
+    <div class="collapse navbar-collapse" id="dhNavbar">
+      <ul class="navbar-nav mx-auto gap-lg-3">
+        <li class="nav-item"><a class="nav-link fw-bold px-3 py-2" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold px-3 py-2" routerLink="/about" routerLinkActive="active">About</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold px-3 py-2" routerLink="/services" routerLinkActive="active">Services</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold px-3 py-2" routerLink="/team" routerLinkActive="active">Team</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold px-3 py-2" routerLink="/faq" routerLinkActive="active">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold px-3 py-2" routerLink="/contact" routerLinkActive="active">Contact</a></li>
       </ul>
+      
+      <div class="d-flex align-items-center gap-3">
+        <button (click)="openEnquiryModal()" class="dh-btn-orange rounded-pill px-4">
+          Enquire Now <i class="bi bi-arrow-right-short ms-1 fs-5"></i>
+        </button>
+      </div>
     </div>
   </div>
-</nav>
+</header>
+
+<!-- Project Enquiry Modal -->
+@if (isModalOpen()) {
+  <div class="modal fade show d-block animate__animated animate__fadeIn" style="background: rgba(15, 23, 42, 0.6); z-index: 1060;" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg animate__animated animate__zoomIn animate__faster">
+      <div class="modal-content border-0 shadow-2xl rounded-4 overflow-hidden">
+        <div class="modal-header p-4 border-0 bg-white">
+          <h4 class="fw-800 text-head mb-0">Start Your Project</h4>
+          <button type="button" class="btn-close shadow-none" (click)="closeModal()"></button>
+        </div>
+        
+        <div class="modal-body p-4 p-lg-5 pt-0">
+          @if (isSuccess()) {
+            <div class="text-center py-5 animate-up">
+              <div class="bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4" style="width: 80px; height: 80px;">
+                <i class="bi bi-check-lg fs-1"></i>
+              </div>
+              <h2 class="fw-800 text-head mb-3">Enquiry Submitted!</h2>
+              <p class="text-body fs-5 mb-5">Our technical team will review your requirements and reach out to you within 24 hours.</p>
+              <button class="btn btn-dark px-5 py-3 rounded-3 fw-bold" (click)="closeModal()">Close</button>
+            </div>
+          } @else {
+            <p class="text-body mb-4">Provide your project details below and our solution architects will prepare a custom proposal for you.</p>
+            
+            <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()" class="row g-4">
+              <!-- Contact Details -->
+              <div class="col-md-6">
+                <label class="form-label small fw-bold text-uppercase tracking-wider">Your Name</label>
+                <input type="text" class="form-control form-control-lg bg-subtle border-0" [class.is-invalid]="enquiryForm.get('name')?.touched && enquiryForm.get('name')?.invalid" formControlName="name" placeholder="John Doe">
+                @if (enquiryForm.get('name')?.touched && enquiryForm.get('name')?.invalid) {
+                  <div class="invalid-feedback">Name is required (min 3 chars).</div>
+                }
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold text-uppercase tracking-wider">Email Address</label>
+                <input type="email" class="form-control form-control-lg bg-subtle border-0" [class.is-invalid]="enquiryForm.get('email')?.touched && enquiryForm.get('email')?.invalid" formControlName="email" placeholder="john@company.com">
+                @if (enquiryForm.get('email')?.touched && enquiryForm.get('email')?.invalid) {
+                  <div class="invalid-feedback">Please enter a valid email address.</div>
+                }
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold text-uppercase tracking-wider">Phone Number</label>
+                <input type="text" class="form-control form-control-lg bg-subtle border-0" [class.is-invalid]="enquiryForm.get('phone')?.touched && enquiryForm.get('phone')?.invalid" formControlName="phone" placeholder="+1 (555) 000-0000">
+                @if (enquiryForm.get('phone')?.touched && enquiryForm.get('phone')?.invalid) {
+                  <div class="invalid-feedback">Valid phone number is required.</div>
+                }
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold text-uppercase tracking-wider">Company Name</label>
+                <input type="text" class="form-control form-control-lg bg-subtle border-0" [class.is-invalid]="enquiryForm.get('company_name')?.touched && enquiryForm.get('company_name')?.invalid" formControlName="company_name" placeholder="Acme Inc">
+                @if (enquiryForm.get('company_name')?.touched && enquiryForm.get('company_name')?.invalid) {
+                  <div class="invalid-feedback">Company name is required.</div>
+                }
+              </div>
+
+              <hr class="my-2 opacity-5">
+
+              <!-- Project Specs -->
+              <div class="col-md-4">
+                <label class="form-label small fw-bold text-uppercase tracking-wider">Project Type</label>
+                <select class="form-select form-select-lg bg-subtle border-0" formControlName="project_type_id">
+                  <option [value]="1">Web Development</option>
+                  <option [value]="2">Mobile Solutions</option>
+                  <option [value]="3">Cloud Infrastructure</option>
+                  <option [value]="4">UI/UX Design</option>
+                  <option [value]="5">AI Integration</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small fw-bold text-uppercase tracking-wider">Budget Estimation</label>
+                <input type="text" class="form-control form-control-lg bg-subtle border-0" [class.is-invalid]="enquiryForm.get('budget_estimation')?.touched && enquiryForm.get('budget_estimation')?.invalid" formControlName="budget_estimation" placeholder="e.g. $10k - $20k">
+                @if (enquiryForm.get('budget_estimation')?.touched && enquiryForm.get('budget_estimation')?.invalid) {
+                  <div class="invalid-feedback">Budget estimation is required.</div>
+                }
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small fw-bold text-uppercase tracking-wider">Timeline</label>
+                <input type="text" class="form-control form-control-lg bg-subtle border-0" [class.is-invalid]="enquiryForm.get('estimated_timeline')?.touched && enquiryForm.get('estimated_timeline')?.invalid" formControlName="estimated_timeline" placeholder="e.g. 3 Months">
+                @if (enquiryForm.get('estimated_timeline')?.touched && enquiryForm.get('estimated_timeline')?.invalid) {
+                  <div class="invalid-feedback">Timeline is required.</div>
+                }
+              </div>
+
+              <div class="col-12">
+                <label class="form-label small fw-bold text-uppercase tracking-wider">Detailed Requirements</label>
+                <textarea class="form-control form-control-lg bg-subtle border-0" [class.is-invalid]="enquiryForm.get('requirements')?.touched && enquiryForm.get('requirements')?.invalid" rows="4" formControlName="requirements" placeholder="Tell us about your technical goals and challenges..."></textarea>
+                @if (enquiryForm.get('requirements')?.touched && enquiryForm.get('requirements')?.invalid) {
+                  <div class="invalid-feedback">Please provide at least 10 characters of requirements.</div>
+                }
+              </div>
+
+              <div class="col-12 pt-2">
+                <button type="submit" class="dh-btn-orange w-100 justify-content-center py-3 fs-5 shadow-lg" [disabled]="enquiryForm.invalid || isSubmitting()">
+                  @if (isSubmitting()) {
+                    <span class="spinner-border spinner-border-sm me-2"></span> Submitting...
+                  } @else {
+                    Submit Enquiry <i class="bi bi-send-fill ms-2"></i>
+                  }
+                </button>
+              </div>
+            </form>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+}

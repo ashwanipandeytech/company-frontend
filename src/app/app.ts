@@ -9,9 +9,12 @@ import { RouterOutlet } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class App {
+  constructor(){
+ console.log('live deployed');
+  }
 
   ngOnInit(){
-  console.log('live deployed');
+ 
   
   }
 }

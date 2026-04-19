@@ -9,11 +9,7 @@ import { RouterOutlet } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class App {
-  constructor(){
-    console.log('App Component Constructor: live deployed at 2026-04-19');
-  }
+  constructor(){}
 
-  ngOnInit(){
-    console.log('App Component OnInit: live deployed at 2026-04-19');
-  }
+  ngOnInit(){}
 }

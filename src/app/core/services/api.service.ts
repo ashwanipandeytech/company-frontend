@@ -77,7 +77,7 @@ export class ApiService {
   }
 
   updateClient(id: number, formData: FormData): Observable<MessageResponse> {
-    return this.http.put<MessageResponse>(`${this.baseUrl}/admin/clients/${id}`, formData);
+    return this.http.post<MessageResponse>(`${this.baseUrl}/admin/clients/${id}`, formData);
   }
 
   deleteClient(id: number): Observable<MessageResponse> {
@@ -99,7 +99,7 @@ export class ApiService {
   }
 
   updateProject(id: number, formData: FormData): Observable<MessageResponse> {
-    return this.http.put<MessageResponse>(`${this.baseUrl}/admin/projects/${id}`, formData);
+    return this.http.post<MessageResponse>(`${this.baseUrl}/admin/projects/${id}`, formData);
   }
 
   deleteProject(id: number): Observable<MessageResponse> {

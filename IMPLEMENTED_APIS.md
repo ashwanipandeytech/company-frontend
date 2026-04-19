@@ -44,7 +44,7 @@ Requires `Authorization: Bearer {token}`.
 | **List All Clients** | `GET` | `/admin/clients` | `getAdminClients()` |
 | **View Specific Client** | `GET` | `/admin/clients/{id}` | `getAdminClientById(id)` |
 | **Create New Client** | `POST` | `/admin/clients` | `createClient(formData)` |
-| **Update Client** | `PUT` | `/admin/clients/{id}` | `updateClient(id, payload)` |
+| **Update Client** | `POST` | `/admin/clients/{id}` | `updateClient(id, payload)` |
 | **Delete Client** | `DELETE` | `/admin/clients/{id}` | `deleteClient(id)` |
 
 ---
@@ -57,7 +57,7 @@ Requires `Authorization: Bearer {token}`.
 | **List All Projects** | `GET` | `/admin/projects` | `getAdminProjects()` |
 | **View Specific Project** | `GET` | `/admin/projects/{id}` | `getAdminProjectById(id)` |
 | **Create New Project** | `POST` | `/admin/projects` | `createProject(formData)` |
-| **Update Project** | `PUT` | `/admin/projects/{id}` | `updateProject(id, payload)` |
+| **Update Project** | `POST` | `/admin/projects/{id}` | `updateProject(id, payload)` |
 | **Delete Project** | `DELETE` | `/admin/projects/{id}` | `deleteProject(id)` |
 
 ---

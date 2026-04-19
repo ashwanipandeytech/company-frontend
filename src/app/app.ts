@@ -10,11 +10,10 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   constructor(){
- console.log('live deployed');
+    console.log('App Component Constructor: live deployed at 2026-04-19');
   }
 
   ngOnInit(){
- 
-  
+    console.log('App Component OnInit: live deployed at 2026-04-19');
   }
 }

@@ -36,8 +36,9 @@ jobs:
           port: 21
           protocol: ftp
           local-dir: ./dist/demo-handler/browser/
-          server-dir: /
-          timeout: 60000
+          server-dir: ./
+          timeout: 120000
+          log-level: verbose
           dangerous-clean-slate: false
           exclude: |
             **/.htaccess

@@ -203,6 +203,8 @@
 </section>
 
 <!-- 8. Testimonials -->
+
+<!-- 8. Testimonials -->
 <section>
   <div class="container">
     <div class="text-center mb-5 pb-lg-4">
@@ -238,32 +240,73 @@
   </div>
 </section>
 
-<!-- 9. Newsletter Section -->
-<section class="bg-orange-light border-top border-bottom">
-  <div class="container text-center py-4">
-    <h3 class="fw-800 mb-3">Join Our Technical Hub</h3>
-    <p class="text-body mb-5 mx-auto" style="max-width: 500px;">Get monthly insights on cloud architecture, AI trends, and modern software engineering.</p>
-    <div class="row justify-content-center">
-      <div class="col-md-6 col-lg-4">
-        <div class="input-group shadow-sm">
-          <input type="email" class="form-control border-0 py-3 px-4" placeholder="Enter your email">
-          <button class="btn dh-btn-orange px-4 py-0 rounded-start-0">Subscribe</button>
-        </div>
+<!-- Consolidated Live Ecosystem Section -->
+<section class="bg-subtle border-top border-bottom">
+  <div class="container py-5">
+    <div class="row align-items-center mb-5">
+      <div class="col-lg-8">
+        <span class="dh-section-label">Real-time Data</span>
+        <h2 class="display-4 fw-800">Our <span class="text-orange">Live</span> Ecosystem</h2>
+        <p class="text-body lead">Direct feed from our engineering pipeline and partner network.</p>
       </div>
+      <div class="col-lg-4 text-lg-end">
+        <span class="badge rounded-pill bg-success-subtle text-success border border-success border-opacity-25 px-3 py-2 d-inline-flex align-items-center gap-2">
+          <span class="dot-pulse"></span> DYNAMIC CLIENT/PROJECTS
+        </span>
+      </div>
+    </div>
+
+    <!-- 1. Live Projects Sub-section -->
+    <div class="mb-5">
+      <h5 class="fw-bold text-uppercase small tracking-wider mb-4 opacity-75">Recent Engineering Works</h5>
+      @if (projects().length > 0) {
+        <div class="row g-4">
+          @for (project of projects().slice(0, 3); track project.id) {
+            <div class="col-lg-4">
+              <div class="dh-card-white p-0 overflow-hidden border-0 shadow-sm h-100">
+                <div class="position-relative">
+                  <img [src]="project.thumbnail_url || 'https://placehold.co/600x400/FFF0E6/FF6A00?text=Project+Thumbnail'" [alt]="project.title" class="w-100 object-fit-cover" style="height: 200px;">
+                  <span class="badge bg-dark position-absolute top-0 end-0 m-3 text-uppercase tracking-wider small">{{ project.status }}</span>
+                </div>
+                <div class="p-4">
+                  <h6 class="fw-bold mb-2">{{ project.title }}</h6>
+                  <p class="text-body small mb-0 line-clamp-2">{{ project.description }}</p>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="dh-card-white text-center py-4 border-dashed bg-transparent">
+          <p class="text-muted small mb-0">Project portfolio is being synchronized...</p>
+        </div>
+      }
+    </div>
+
+    <!-- 2. Live Clients Sub-section -->
+    <div>
+      <h5 class="fw-bold text-uppercase small tracking-wider mb-4 opacity-75">Trusted Technical Partners</h5>
+      @if (clients().length > 0) {
+        <div class="row align-items-center g-4">
+          @for (client of clients(); track client.id) {
+            <div class="col-6 col-md-3 col-lg-2">
+              <div class="client-logo-wrap p-3 text-center grayscale-hover bg-white rounded-3 shadow-sm border">
+                @if (client.logo_url) {
+                  <img [src]="client.logo_url" [alt]="client.name" class="img-fluid" style="max-height: 35px; filter: grayscale(1);">
+                } @else {
+                  <span class="fw-bold text-muted small">{{ client.name }}</span>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="text-center py-3">
+          <p class="text-muted small">Synchronizing partner network...</p>
+        </div>
+      }
     </div>
   </div>
 </section>
 
-<!-- 10. Contact CTA Section -->
-<section class="bg-white">
-  <div class="container">
-    <div class="p-5 bg-dark rounded-4 shadow-2xl text-center position-relative overflow-hidden border border-white border-opacity-10">
-       <div class="position-relative z-1 py-4">
-          <h2 class="display-4 fw-800 text-white mb-4">Ready to start your <span class="text-orange">next project?</span></h2>
-          <p class="lead text-white mb-5">Connect with our lead architects today for a free technical consultation.</p>
-          <a routerLink="/contact" class="dh-btn-orange fs-5 px-5 py-3 shadow-lg">Start Building Today</a>
-       </div>
-       <div class="circle-decoration position-absolute top-0 end-0 opacity-10"></div>
-    </div>
-  </div>
-</section>
+<!-- 8. Testimonials -->

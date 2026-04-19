@@ -1,0 +1,37 @@
+<div class="sidebar d-flex flex-column shadow">
+  <div class="p-4 border-bottom border-secondary border-opacity-25 mb-3">
+    <h4 class="fw-bold mb-0 text-white">DH Console</h4>
+  </div>
+
+  <nav class="flex-grow-1">
+    <a routerLink="/console-panel/enquiries" routerLinkActive="active" class="nav-link d-flex align-items-center p-3 text-decoration-none">
+      <i class="bi bi-chat-square-dots me-3 fs-5"></i> Enquiries
+    </a>
+    <a routerLink="/console-panel/clients" routerLinkActive="active" class="nav-link d-flex align-items-center p-3 text-decoration-none">
+      <i class="bi bi-people me-3 fs-5"></i> Clients
+    </a>
+    <a routerLink="/console-panel/projects" routerLinkActive="active" class="nav-link d-flex align-items-center p-3 text-decoration-none">
+      <i class="bi bi-kanban me-3 fs-5"></i> Projects
+    </a>
+  </nav>
+
+  <div class="p-4 border-top border-secondary border-opacity-25 mt-auto">
+    <button (click)="logout()" class="btn btn-outline-danger w-100 border-0 d-flex align-items-center justify-content-center">
+      <i class="bi bi-box-arrow-right me-2"></i> Logout
+    </button>
+  </div>
+</div>
+
+<main class="main-content">
+  <header class="p-3 bg-white border-bottom shadow-sm d-flex justify-content-end align-items-center px-4">
+    <div class="d-flex align-items-center">
+      <div class="bg-orange-light text-orange rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 36px; height: 36px;">
+        <i class="bi bi-person-badge"></i>
+      </div>
+      <span class="fw-bold small text-dark">Admin User</span>
+    </div>
+  </header>
+  <div class="p-4">
+    <router-outlet></router-outlet>
+  </div>
+</main>

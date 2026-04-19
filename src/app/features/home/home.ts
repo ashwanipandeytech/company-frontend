@@ -14,4 +14,10 @@ export class Home {
   private readonly demoService = inject(DemoService);
   protected readonly services = this.demoService.allServices;
   protected readonly team = this.demoService.allTeam;
+  protected readonly clients = this.demoService.allClients;
+  protected readonly projects = this.demoService.allProjects;
+
+  constructor() {
+    console.log('Home Component: projects signal value:', this.projects());
+  }
 }

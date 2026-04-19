@@ -108,6 +108,13 @@
         } @else {
           <div class="dh-card-white p-5 h-100 shadow-lg border-0">
             <h3 class="fw-800 text-head mb-4">Send a Message</h3>
+            
+            @if (errorMessage()) {
+              <div class="alert alert-danger mb-4 border-0 shadow-sm" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i> {{ errorMessage() }}
+              </div>
+            }
+
             <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="row g-4">
               <div class="col-md-6">
                 <label class="form-label small fw-bold text-head text-uppercase tracking-wider">Your Name</label>
@@ -131,8 +138,12 @@
                 }
               </div>
               <div class="col-12 pt-2">
-                <button type="submit" class="dh-btn-orange w-100 justify-content-center py-3 fs-5 shadow-lg" [disabled]="contactForm.invalid">
-                  Send Message <i class="bi bi-send ms-2"></i>
+                <button type="submit" class="dh-btn-orange w-100 justify-content-center py-3 fs-5 shadow-lg" [disabled]="contactForm.invalid || loading()">
+                  @if (loading()) {
+                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Sending...
+                  } @else {
+                    Send Message <i class="bi bi-send ms-2"></i>
+                  }
                 </button>
               </div>
             </form>

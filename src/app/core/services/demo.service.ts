@@ -1,8 +1,13 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, inject } from '@angular/core';
 import { ServiceItem, TeamMember, FAQItem } from '../models/demo.model';
+import { ApiService } from './api.service';
+import { Client, Project } from '../models/api.model';
 
 @Injectable({ providedIn: 'root' })
 export class DemoService {
+  private readonly apiService = inject(ApiService);
+  
+  // Existing static data
   private readonly services = signal<ServiceItem[]>([
     { id: 1, title: 'Web Development', description: 'Modern and responsive web applications using Angular and Node.js.', icon: 'bi-code-slash' },
     { id: 2, title: 'Mobile Solutions', description: 'Cross-platform mobile apps built with Capacitor and Flutter.', icon: 'bi-phone' },
@@ -61,7 +66,35 @@ export class DemoService {
     { id: 5, question: 'What does a typical engagement look like?', answer: 'Most engagements start with a discovery phase, followed by a clear delivery roadmap, milestone-based execution, and regular stakeholder communication.' }
   ]);
 
+  // New signals for API data
+  private readonly liveClients = signal<Client[]>([]);
+  private readonly liveProjects = signal<Project[]>([]);
+
   readonly allServices = this.services.asReadonly();
   readonly allTeam = this.team.asReadonly();
   readonly allFaqs = this.faqs.asReadonly();
+  readonly allClients = this.liveClients.asReadonly();
+  readonly allProjects = this.liveProjects.asReadonly();
+
+  constructor() {
+    this.loadLiveData();
+  }
+
+  private loadLiveData() {
+    this.apiService.getActiveClients().subscribe({
+      next: (res) => {
+        console.log('Clients API Response:', res);
+        this.liveClients.set(res.data);
+      },
+      error: (err) => console.error('Error loading clients from API', err)
+    });
+
+    this.apiService.getActiveProjects().subscribe({
+      next: (res) => {
+        console.log('Projects API Response:', res);
+        this.liveProjects.set(res.data);
+      },
+      error: (err) => console.error('Error loading projects from API', err)
+    });
+  }
 }

@@ -1,0 +1,104 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h3 class="fw-bold mb-0">Clients Management</h3>
+  <button (click)="openAddModal()" class="btn btn-dark px-4 shadow-sm">
+    <i class="bi bi-plus-lg me-2"></i> Add Client
+  </button>
+</div>
+
+<div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="bg-light">
+          <tr>
+            <th class="ps-4">Logo</th>
+            <th>Client Name</th>
+            <th>Website</th>
+            <th>Status</th>
+            <th class="text-end pe-4">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (loading()) {
+            <tr>
+              <td colspan="5" class="text-center py-5">
+                <div class="spinner-border text-orange" role="status"></div>
+              </td>
+            </tr>
+          } @else if (clients().length === 0) {
+            <tr>
+              <td colspan="5" class="text-center py-5 text-muted">No clients found</td>
+            </tr>
+          } @else {
+            @for (client of clients(); track client.id) {
+              <tr>
+                <td class="ps-4">
+                  <div class="bg-light rounded p-2 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                    @if (client.logo_url) {
+                      <img [src]="client.logo_url" [alt]="client.name" class="img-fluid" style="max-height: 30px;">
+                    } @else {
+                      <i class="bi bi-building text-muted opacity-50"></i>
+                    }
+                  </div>
+                </td>
+                <td class="fw-bold text-dark">{{ client.name }}</td>
+                <td><a [href]="client.website_url" target="_blank" class="text-orange text-decoration-none small">{{ client.website_url }}</a></td>
+                <td>
+                  <span class="badge rounded-pill" [ngClass]="client.is_active ? 'bg-success' : 'bg-secondary'">
+                    {{ client.is_active ? 'Active' : 'Inactive' }}
+                  </span>
+                </td>
+                <td class="text-end pe-4">
+                  <button (click)="openEditModal(client)" class="btn btn-sm btn-light border me-2"><i class="bi bi-pencil"></i></button>
+                  <button (click)="deleteClient(client.id)" class="btn btn-sm btn-light border text-danger"><i class="bi bi-trash"></i></button>
+                </td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Simple Modal Backdrop -->
+@if (isModalOpen()) {
+  <div class="modal fade show d-block" style="background: rgba(0,0,0,0.5);" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg rounded-4">
+        <div class="modal-header p-4 border-0">
+          <h5 class="modal-title fw-bold">{{ isEditing() ? 'Edit Client' : 'Add New Client' }}</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body p-4 pt-0">
+          <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label class="form-label small fw-bold text-uppercase">Client Name</label>
+              <input type="text" class="form-control" formControlName="name" placeholder="e.g. NexaCorp">
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-bold text-uppercase">Website URL</label>
+              <input type="url" class="form-control" formControlName="website_url" placeholder="https://example.com">
+            </div>
+            
+            @if (!isEditing()) {
+              <div class="mb-3">
+                <label class="form-label small fw-bold text-uppercase">Logo</label>
+                <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*">
+              </div>
+            }
+
+            <div class="mb-4 d-flex align-items-center">
+              <input type="checkbox" class="form-check-input me-2" formControlName="is_active" id="isActiveCheck">
+              <label class="form-check-label small fw-bold" for="isActiveCheck">Active Client</label>
+            </div>
+
+            <button type="submit" class="btn btn-dark w-100 py-2 fw-bold" [disabled]="clientForm.invalid">
+              {{ isEditing() ? 'Update Client' : 'Create Client' }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+}

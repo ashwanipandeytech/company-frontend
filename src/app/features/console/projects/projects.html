@@ -33,9 +33,9 @@
             @for (project of projects(); track project.id) {
               <tr>
                 <td class="ps-4">
-                  <div class="bg-light rounded overflow-hidden" style="width: 60px; height: 40px;">
-                    @if (project.thumbnail_url) {
-                      <img [src]="project.thumbnail_url" [alt]="project.title" class="w-100 h-100 object-fit-cover">
+                  <div class="bg-light rounded overflow-hidden border" style="width: 60px; height: 40px;">
+                    @if (project.thumbnail || project.thumbnail_url) {
+                      <img [src]="getImageUrl(project.thumbnail || project.thumbnail_url)" [alt]="project.title" class="w-100 h-100 object-fit-cover">
                     } @else {
                       <div class="w-100 h-100 d-flex align-items-center justify-content-center">
                         <i class="bi bi-image text-muted opacity-50"></i>
@@ -58,7 +58,7 @@
                 </td>
                 <td class="text-end pe-4">
                   <button (click)="openEditModal(project)" class="btn btn-sm btn-light border me-2"><i class="bi bi-pencil"></i></button>
-                  <button (click)="deleteProject(project.id)" class="btn btn-sm btn-light border text-danger"><i class="bi bi-trash"></i></button>
+                  <button (click)="openDeleteModal(project.id)" class="btn btn-sm btn-light border text-danger"><i class="bi bi-trash"></i></button>
                 </td>
               </tr>
             }
@@ -80,6 +80,25 @@
         </div>
         <div class="modal-body p-4 pt-0">
           <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+            
+            <!-- Current/New Preview -->
+            @if (selectedFilePreview()) {
+              <div class="mb-3 text-center animate-up">
+                <label class="form-label small fw-bold text-uppercase d-block text-start text-success">New Thumbnail Preview</label>
+                <div class="bg-success-subtle p-2 rounded border border-success d-inline-block position-relative">
+                  <img [src]="selectedFilePreview()" class="img-fluid rounded" style="max-height: 100px;">
+                  <button type="button" class="btn-close position-absolute top-0 end-0 m-1" style="font-size: 10px;" (click)="selectedFilePreview.set(null); selectedFile = null"></button>
+                </div>
+              </div>
+            } @else if (isEditing() && currentThumbnailUrl()) {
+              <div class="mb-3 text-center">
+                <label class="form-label small fw-bold text-uppercase d-block text-start">Current Thumbnail</label>
+                <div class="bg-light p-2 rounded border d-inline-block">
+                  <img [src]="currentThumbnailUrl()" class="img-fluid rounded" style="max-height: 100px;">
+                </div>
+              </div>
+            }
+
             <div class="mb-3">
               <label class="form-label small fw-bold text-uppercase">Project Title</label>
               <input type="text" class="form-control" formControlName="title" placeholder="e.g. E-Commerce Redesign">
@@ -99,10 +118,8 @@
                 </select>
               </div>
               <div class="col-md-6">
-                @if (!isEditing()) {
-                  <label class="form-label small fw-bold text-uppercase">Thumbnail</label>
-                  <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*">
-                }
+                <label class="form-label small fw-bold text-uppercase">{{ isEditing() ? 'Update Thumbnail (Optional)' : 'Thumbnail' }}</label>
+                <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*">
               </div>
             </div>
 
@@ -110,6 +127,27 @@
               {{ isEditing() ? 'Update Project' : 'Create Project' }}
             </button>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Delete Confirmation Modal -->
+@if (isDeleteModalOpen()) {
+  <div class="modal fade show d-block" style="background: rgba(0,0,0,0.6);" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 400px;">
+      <div class="modal-content border-0 shadow-lg rounded-4 text-center">
+        <div class="modal-body p-4">
+          <div class="bg-danger-subtle text-danger rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4" style="width: 64px; height: 64px;">
+            <i class="bi bi-exclamation-triangle fs-1"></i>
+          </div>
+          <h4 class="fw-bold text-dark mb-2">Confirm Delete</h4>
+          <p class="text-muted mb-4">Are you sure you want to remove this project? This action cannot be undone.</p>
+          <div class="d-flex gap-3">
+            <button type="button" class="btn btn-light border w-100 py-2 fw-bold" (click)="closeDeleteModal()">Cancel</button>
+            <button type="button" class="btn btn-danger w-100 py-2 fw-bold" (click)="confirmDelete()">Delete</button>
+          </div>
         </div>
       </div>
     </div>

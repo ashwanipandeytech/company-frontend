@@ -275,13 +275,13 @@ JSON
 
 Update Client Details
 
-    Method: PUT (or PATCH)
+    Method: POST
 
     Endpoint: /admin/clients/{id}
 
-    Headers: Authorization: Bearer {token} | Content-Type: application/json
+    Headers: Authorization: Bearer {token} | Content-Type: multipart/form-data
 
-    Payload: (Only send fields you want to update)
+    Payload (Form-Data): (Only send fields you want to update)
 
 JSON
 
@@ -367,13 +367,13 @@ JSON
 
 Update Project Details
 
-    Method: PUT (or PATCH)
+    Method: POST
 
     Endpoint: /admin/projects/{id}
 
-    Headers: Authorization: Bearer {token} | Content-Type: application/json
+    Headers: Authorization: Bearer {token} | Content-Type: multipart/form-data
 
-    Payload: (Only send fields you want to update)
+    Payload (Form-Data): (Only send fields you want to update)
 
 JSON
 

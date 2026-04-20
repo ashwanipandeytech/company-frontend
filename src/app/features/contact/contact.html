@@ -47,11 +47,11 @@
   <div class="container">
     <div class="row g-5">
       <!-- Contact Info -->
-      <div class="col-lg-5">
+      <div class="col-lg-4">
         <div class="mb-5">
           <span class="dh-section-label">Information</span>
           <h2 class="display-5 fw-800 text-head mb-4">Get in <span class="text-orange">Touch</span></h2>
-          <p class="text-body fs-5 mb-0">We are always available for technical consultations and discovery sessions. Reach out to us through any of these channels.</p>
+          <p class="text-body fs-5 mb-0">We are always available for technical consultations and discovery sessions.</p>
         </div>
 
         <div class="row g-4">
@@ -62,7 +62,6 @@
               </div>
               <div>
                 <h5 class="fw-bold mb-1">Email Us</h5>
-                <p class="text-body small mb-2">For general inquiries and support</p>
                 <a href="mailto:hello@demohandler.com" class="text-orange fw-bold text-decoration-none">hello@demohandler.com</a>
               </div>
             </div>
@@ -74,20 +73,7 @@
               </div>
               <div>
                 <h5 class="fw-bold mb-1">Call Us</h5>
-                <p class="text-body small mb-2">Mon-Fri from 9am to 6pm</p>
                 <a href="tel:+1555000000" class="text-orange fw-bold text-decoration-none">+1 (555) 000-0000</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="dh-card-white p-4 d-flex align-items-start gap-4">
-              <div class="bg-orange-light text-orange rounded-3 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 56px; height: 56px;">
-                <i class="bi bi-geo-alt fs-3"></i>
-              </div>
-              <div>
-                <h5 class="fw-bold mb-1">Visit Us</h5>
-                <p class="text-body small mb-2">Our global headquarters</p>
-                <address class="text-body small mb-0 fw-bold">123 Tech Plaza, Silicon Valley, CA</address>
               </div>
             </div>
           </div>
@@ -95,54 +81,85 @@
       </div>
 
       <!-- Contact Form -->
-      <div class="col-lg-7">
-        @if (submitted()) {
+      <div class="col-lg-8">
+        @if (isSuccess()) {
           <div class="dh-card-white p-5 text-center h-100 d-flex flex-column justify-content-center animate-up">
-            <div class="icon-pulse mx-auto mb-4 bg-orange"></div>
-            <h2 class="fw-800 text-head mb-3">Message Received</h2>
-            <p class="text-body fs-5 mb-5">Our architects are reviewing your requirements. Expect a response within 12 hours.</p>
-            <button class="dh-btn-orange mx-auto px-5 py-3 shadow-lg" (click)="submitted.set(false)">
-              Send Another Message
+            <div class="bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4" style="width: 80px; height: 80px;">
+              <i class="bi bi-check-lg fs-1"></i>
+            </div>
+            <h2 class="fw-800 text-head mb-3">Enquiry Submitted!</h2>
+            <p class="text-body fs-5 mb-5">Expect a response from our lead architects within 24 hours.</p>
+            <button class="dh-btn-orange mx-auto px-5 py-3 shadow-lg" (click)="resetForm()">
+              Send Another Enquiry
             </button>
           </div>
         } @else {
           <div class="dh-card-white p-5 h-100 shadow-lg border-0">
-            <h3 class="fw-800 text-head mb-4">Send a Message</h3>
+            <h3 class="fw-800 text-head mb-4">Project Enquiry Form</h3>
             
-            @if (errorMessage()) {
-              <div class="alert alert-danger mb-4 border-0 shadow-sm" role="alert">
-                <i class="bi bi-exclamation-triangle-fill me-2"></i> {{ errorMessage() }}
+            <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()" class="row g-4">
+              <div class="col-md-6">
+                <label class="form-label small fw-bold text-uppercase tracking-wider">Your Name</label>
+                <input type="text" class="form-control form-control-lg bg-subtle border-0" [class.is-invalid]="enquiryForm.get('name')?.touched && enquiryForm.get('name')?.invalid" formControlName="name" placeholder="John Doe">
+                @if (enquiryForm.get('name')?.touched && enquiryForm.get('name')?.invalid) {
+                  <div class="invalid-feedback">Name is required (min 3 chars).</div>
+                }
               </div>
-            }
+              <div class="col-md-6">
+                <label class="form-label small fw-bold text-uppercase tracking-wider">Email Address</label>
+                <input type="email" class="form-control form-control-lg bg-subtle border-0" [class.is-invalid]="enquiryForm.get('email')?.touched && enquiryForm.get('email')?.invalid" formControlName="email" placeholder="john@company.com">
+                @if (enquiryForm.get('email')?.touched && enquiryForm.get('email')?.invalid) {
+                  <div class="invalid-feedback">Please enter a valid email address.</div>
+                }
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold text-uppercase tracking-wider">Phone Number</label>
+                <input type="text" class="form-control form-control-lg bg-subtle border-0" [class.is-invalid]="enquiryForm.get('phone')?.touched && enquiryForm.get('phone')?.invalid" formControlName="phone" placeholder="+1 (555) 000-0000">
+                @if (enquiryForm.get('phone')?.touched && enquiryForm.get('phone')?.invalid) {
+                  <div class="invalid-feedback">Valid phone number is required.</div>
+                }
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold text-uppercase tracking-wider">Company Name</label>
+                <input type="text" class="form-control form-control-lg bg-subtle border-0" [class.is-invalid]="enquiryForm.get('company_name')?.touched && enquiryForm.get('company_name')?.invalid" formControlName="company_name" placeholder="Acme Inc">
+                @if (enquiryForm.get('company_name')?.touched && enquiryForm.get('company_name')?.invalid) {
+                  <div class="invalid-feedback">Company name is required.</div>
+                }
+              </div>
 
-            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="row g-4">
-              <div class="col-md-6">
-                <label class="form-label small fw-bold text-head text-uppercase tracking-wider">Your Name</label>
-                <input type="text" class="form-control form-control-lg bg-subtle border-0 py-3 px-4 shadow-none" formControlName="name" placeholder="John Doe">
-                @if (contactForm.get('name')?.touched && contactForm.get('name')?.invalid) {
-                  <div class="text-danger small mt-1">Name is required</div>
-                }
+              <div class="col-md-4">
+                <label class="form-label small fw-bold text-uppercase tracking-wider">Project Type</label>
+                <select class="form-select form-select-lg bg-subtle border-0" formControlName="project_type_id">
+                  <option [value]="1">Web Development</option>
+                  <option [value]="2">Mobile Solutions</option>
+                  <option [value]="3">Cloud Infrastructure</option>
+                  <option [value]="4">UI/UX Design</option>
+                  <option [value]="5">AI Integration</option>
+                </select>
               </div>
-              <div class="col-md-6">
-                <label class="form-label small fw-bold text-head text-uppercase tracking-wider">Email Address</label>
-                <input type="email" class="form-control form-control-lg bg-subtle border-0 py-3 px-4 shadow-none" formControlName="email" placeholder="john@enterprise.com">
-                @if (contactForm.get('email')?.touched && contactForm.get('email')?.invalid) {
-                  <div class="text-danger small mt-1">Valid email is required</div>
-                }
+              <div class="col-md-4">
+                <label class="form-label small fw-bold text-uppercase tracking-wider">Budget</label>
+                <input type="text" class="form-control form-control-lg bg-subtle border-0" [class.is-invalid]="enquiryForm.get('budget_estimation')?.touched && enquiryForm.get('budget_estimation')?.invalid" formControlName="budget_estimation" placeholder="e.g. $10k - $20k">
               </div>
+              <div class="col-md-4">
+                <label class="form-label small fw-bold text-uppercase tracking-wider">Timeline</label>
+                <input type="text" class="form-control form-control-lg bg-subtle border-0" [class.is-invalid]="enquiryForm.get('estimated_timeline')?.touched && enquiryForm.get('estimated_timeline')?.invalid" formControlName="estimated_timeline" placeholder="e.g. 3 Months">
+              </div>
+
               <div class="col-12">
-                <label class="form-label small fw-bold text-head text-uppercase tracking-wider">Project Details</label>
-                <textarea class="form-control form-control-lg bg-subtle border-0 py-3 px-4 shadow-none" rows="5" formControlName="message" placeholder="Tell us about your project goals..."></textarea>
-                @if (contactForm.get('message')?.touched && contactForm.get('message')?.invalid) {
-                  <div class="text-danger small mt-1">Message must be at least 10 characters</div>
+                <label class="form-label small fw-bold text-uppercase tracking-wider">Requirements</label>
+                <textarea class="form-control form-control-lg bg-subtle border-0" [class.is-invalid]="enquiryForm.get('requirements')?.touched && enquiryForm.get('requirements')?.invalid" rows="4" formControlName="requirements" placeholder="Tell us about your technical goals..."></textarea>
+                @if (enquiryForm.get('requirements')?.touched && enquiryForm.get('requirements')?.invalid) {
+                  <div class="invalid-feedback">Please provide at least 10 characters.</div>
                 }
               </div>
+
               <div class="col-12 pt-2">
-                <button type="submit" class="dh-btn-orange w-100 justify-content-center py-3 fs-5 shadow-lg" [disabled]="contactForm.invalid || loading()">
-                  @if (loading()) {
-                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Sending...
+                <button type="submit" class="dh-btn-orange w-100 justify-content-center py-3 fs-5 shadow-lg" [disabled]="enquiryForm.invalid || isSubmitting()">
+                  @if (isSubmitting()) {
+                    <span class="spinner-border spinner-border-sm me-2"></span> Submitting...
                   } @else {
-                    Send Message <i class="bi bi-send ms-2"></i>
+                    Submit Project Enquiry <i class="bi bi-send-fill ms-2"></i>
                   }
                 </button>
               </div>
@@ -154,7 +171,7 @@
   </div>
 </section>
 
-<!-- 3. Map/Location Section (Optional/Placeholder) -->
+<!-- 3. Map Section -->
 <section class="p-0">
   <div class="bg-orange-light py-5 text-center">
     <div class="container">

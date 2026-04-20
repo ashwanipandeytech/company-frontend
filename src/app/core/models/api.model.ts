@@ -2,7 +2,9 @@ export interface Client {
   id: number;
   name: string;
   website_url: string;
+  website?: string; // Fallback
   logo_url?: string;
+  logo?: string; // Fallback for raw path
   is_active?: boolean;
 }
 
@@ -12,6 +14,7 @@ export interface Project {
   slug?: string;
   description: string;
   thumbnail_url?: string;
+  thumbnail?: string; // Fallback for raw path
   status: 'ongoing' | 'completed' | 'archived';
   client_id?: number;
 }
@@ -56,7 +59,18 @@ export interface AdminLoginResponse {
 export interface Enquiry {
   id: number;
   name: string;
+  email?: string;
+  phone?: string;
   company_name: string;
-  status: 'pending' | 'contacted' | 'resolved' | 'cancelled';
+  project_type_id?: number;
+  budget_estimation?: string;
+  estimated_timeline?: string;
+  requirements?: string;
+  status: 'new' | 'pending' | 'contacted' | 'resolved' | 'cancelled';
   created_at: string;
+  updated_at?: string;
+  project_type?: {
+    id: number;
+    name: string;
+  };
 }
